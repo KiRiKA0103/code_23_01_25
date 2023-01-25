@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <span>R</span>
+        <input type="text" v-model.number="R">
+        <br>
+        <span>G</span>
+        <input type="text" v-model.number="G">
+        <br>
+        <span>B</span>
+        <input type="text" v-model.number="B">
+        <br>
+
+        <div class="box" :style="{backgroundColor: rgb,width:'200px',height:'200px'}"></div>
+        <p>{{rgb}}</p>
+    </div>
+
+
+
+
+
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                R: 0,
+                G: 0,
+                B: 0,
+            },
+            computed: {
+                rgb() {
+                    return `rgb(${this.R},${this.G},${this.B})`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

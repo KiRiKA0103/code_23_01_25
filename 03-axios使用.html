@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="doGet">axios发起GET请求</button>
+        <button @click="doPost">axios发起POST请求</button>
+        <button @click="Get">axios直接发起GET请求</button>
+        <button @click="Post">axios直接发起POST请求</button>
+    </div>
+
+    <script src="./lib/vue-2.6.12.js"></script>
+
+    <script src="./lib/axios.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                doGet() {
+                    axios({
+                        // 请求方式
+                        method: 'GET',
+                        // 请求地址
+                        url: 'http://www.liulongbin.top:3006/api/getbooks',
+                        // url中查询参数
+                        params: {},
+                        // 请求体参数,
+                        data: {}
+                    }).then(function (result) {
+                        console.log(result.data);
+                    })
+                },
+                async doPost() {
+                    // 解构赋值
+                    const { data: res } = await axios({
+                        // 请求方式
+                        method: 'POST',
+                        // 请求地址
+                        url: 'http://www.liulongbin.top:3006/api/post',
+                        // url中查询参数
+                        params: {},
+                        // 请求体参数,
+                        data: {
+                            name: 'zs',
+                            age: 20,
+                        }
+                    })
+
+                    console.log(res.body);
+                },
+                async Get() {
+                    const { data: res } = await axios.get('http://www.liulongbin.top:3006/api/getbooks', {
+                        params: {
+                            id: 1,
+                        }
+                    })
+                    console.log(res);
+                },
+                async Post() {
+                    const { data: res } = await axios.post('http://www.liulongbin.top:3006/api/post', {
+                        name:'zx',
+                        age:100,
+                    })
+                    console.log(res);
+                },
+
+
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
